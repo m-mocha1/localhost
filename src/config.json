@@ -1,0 +1,68 @@
+[
+  {
+    "server_name": "Main.Server",
+    "server_address": [
+      {
+        "ip": "127.0.0.1",
+        "port": 8080
+      },
+      {
+        "ip": "127.0.0.1",
+        "port": 9090
+      }
+    ],
+    "error_msg": {
+      "404": "Not Found",
+      "500": "Internal Server Error",
+      "403": "Forbidden"
+    },
+    "max_body_size": 2048,
+    "router": [
+      {
+        "path": "/",
+        "root": "./public",
+        "index": "index.html",
+        "methods": [
+          "GET",
+          "POST",
+          "DELETE"
+        ],
+        "directory_listing": true
+      },
+      {
+        "path": "/upload",
+        "root": "/",
+        "methods": [
+          "POST"
+        ]
+      },
+      {
+        "path": "/old",
+        "root": "./public",
+        "methods": [
+          "GET"
+        ],
+        "redirection": {
+          "target": "/new",
+          "status": 301
+        }
+      },
+      {
+        "path": "/new",
+        "root": "./public",
+        "index": "index.html",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/cgi-bin/py.py",
+        "root": "./public",
+        "methods": [
+          "GET"
+        ],
+        "cgi": [".py", "py.py"]
+      }
+    ]
+  }
+]
